@@ -127,13 +127,6 @@ public class SimpleActivity extends Activity {
                 showChangeLangDialog();
             }
         });
-        connect = (Button) findViewById(R.id.btnConnect);
-        connect.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                relativeAfterConnection.setVisibility(View.VISIBLE);
-            }
-        });
 
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -173,12 +166,14 @@ public class SimpleActivity extends Activity {
 
         sharedpreferences = getSharedPreferences(preference, Context.MODE_PRIVATE);
         String wallpaper = sharedpreferences.getString(WALLPAPER, "");
-        if(!wallpaper.isEmpty()){
+        if (!wallpaper.isEmpty()) {
             setWallpaper(wallpaper);
         }
 
         relativeAfterConnection = findViewById(R.id.relativeAfterConnection);
         relativeAfterConnection.setVisibility(View.INVISIBLE);
+
+        connect = (Button) findViewById(R.id.btnConnect);
     }
 
     private void setWallpaper(String originalPath) {
@@ -244,6 +239,7 @@ public class SimpleActivity extends Activity {
         Button btnSend = (Button) findViewById(R.id.btnConnect);
         btnSend.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
+                relativeAfterConnection.setVisibility(View.VISIBLE);
                 bt.send("Text", true);
             }
         });

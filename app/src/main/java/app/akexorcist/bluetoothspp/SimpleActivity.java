@@ -17,7 +17,9 @@
 package app.akexorcist.bluetoothspp;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -42,6 +44,7 @@ import com.kbeanie.multipicker.api.entity.ChosenImage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 import app.akexorcist.bluetotohspp.library.BluetoothState;
@@ -50,6 +53,7 @@ import app.akexorcist.bluetotohspp.library.BluetoothSPP.OnDataReceivedListener;
 import app.akexorcist.bluetotohspp.library.DeviceList;
 
 public class SimpleActivity extends Activity {
+    public static final String WALLPAPER = "wallpaper";
     BluetoothSPP bt;
     private Button btnChangeBackground;
     private CheckBox chkCheckConnection;
@@ -57,6 +61,8 @@ public class SimpleActivity extends Activity {
     private ImagePicker imagePicker;
     private ImageView background;
     private DisplayMetrics metrics;
+    private String preference = "BT";
+    private SharedPreferences sharedpreferences;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,19 +139,11 @@ public class SimpleActivity extends Activity {
                                                        @Override
                                                        public void onImagesChosen(List<ChosenImage> images) {
                                                            Log.e("HI", "HI");
-                                                           Bitmap myBitmap = BitmapFactory
-                                                                   .decodeFile(images.get(0).getOriginalPath());
-
-                                                           Bitmap resized = Bitmap
-                                                                   .createScaledBitmap(myBitmap,
-                                                                           metrics.heightPixels,
-                                                                           (int) (metrics.heightPixels * myBitmap
-                                                                                   .getHeight()
-                                                                                   / myBitmap
-                                                                                   .getWidth()),
-                                                                           true);
-
-                                                           background.setImageBitmap(resized);
+                                                           String originalPath = images.get(0).getOriginalPath();
+                                                           setWallpaper(originalPath);
+                                                           SharedPreferences.Editor edit = sharedpreferences.edit();
+                                                           edit.putString(WALLPAPER, originalPath);
+                                                           edit.commit();
                                                        }
 
                                                        @Override
@@ -164,6 +162,28 @@ public class SimpleActivity extends Activity {
         background.getLayoutParams().height = metrics.heightPixels;
         background.getLayoutParams().width = metrics.widthPixels;
         background.requestLayout();
+
+        sharedpreferences = getSharedPreferences(preference, Context.MODE_PRIVATE);
+        String wallpaper = sharedpreferences.getString(WALLPAPER, "");
+        if(!wallpaper.isEmpty()){
+            setWallpaper(wallpaper);
+        }
+    }
+
+    private void setWallpaper(String originalPath) {
+        Bitmap myBitmap = BitmapFactory
+                .decodeFile(originalPath);
+
+        Bitmap resized = Bitmap
+                .createScaledBitmap(myBitmap,
+                        metrics.heightPixels,
+                        (int) (metrics.heightPixels * myBitmap
+                                .getHeight()
+                                / myBitmap
+                                .getWidth()),
+                        true);
+
+        background.setImageBitmap(resized);
     }
 
     public void showChangeLangDialog() {

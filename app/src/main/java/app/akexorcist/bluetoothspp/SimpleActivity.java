@@ -16,13 +16,18 @@
 
 package app.akexorcist.bluetoothspp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
@@ -33,6 +38,9 @@ import app.akexorcist.bluetotohspp.library.DeviceList;
 
 public class SimpleActivity extends Activity {
     BluetoothSPP bt;
+    private Button btnChangeBackground;
+    private CheckBox chkCheckConnection;
+    private Button btnChangeDefault;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +91,43 @@ public class SimpleActivity extends Activity {
             }
         });
 
-        Intent intent = new Intent(getApplicationContext(), DeviceList.class);
-        startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
+//        Intent intent = new Intent(getApplicationContext(), DeviceList.class);
+//        startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
+
+        btnChangeBackground = (Button) findViewById(R.id.btnChangeBackground);
+        chkCheckConnection = (CheckBox) findViewById(R.id.chkCloseArduinoIfConnectionLost);
+        btnChangeDefault = (Button) findViewById(R.id.btnChangeDefaultPassword);
+
+        btnChangeDefault.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showChangeLangDialog();
+            }
+        });
+    }
+
+    public void showChangeLangDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_default_pwd, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText edt = (EditText) dialogView.findViewById(R.id.editPassword);
+
+        dialogBuilder.setTitle("Set default password");
+        dialogBuilder.setMessage("Enter text below");
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                Toast.makeText(getApplicationContext(), edt.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+            }
+        });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
     }
 
     public void onDestroy() {

@@ -63,6 +63,8 @@ public class SimpleActivity extends Activity {
     private DisplayMetrics metrics;
     private String preference = "BT";
     private SharedPreferences sharedpreferences;
+    private View relativeAfterConnection;
+    private Button connect;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,11 +121,17 @@ public class SimpleActivity extends Activity {
         btnChangeBackground = (Button) findViewById(R.id.btnChangeBackground);
         chkCheckConnection = (CheckBox) findViewById(R.id.chkCloseArduinoIfConnectionLost);
         btnChangeDefault = (Button) findViewById(R.id.btnChangeDefaultPassword);
-
         btnChangeDefault.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 showChangeLangDialog();
+            }
+        });
+        connect = (Button) findViewById(R.id.btnConnect);
+        connect.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeAfterConnection.setVisibility(View.VISIBLE);
             }
         });
 
@@ -168,6 +176,9 @@ public class SimpleActivity extends Activity {
         if(!wallpaper.isEmpty()){
             setWallpaper(wallpaper);
         }
+
+        relativeAfterConnection = findViewById(R.id.relativeAfterConnection);
+        relativeAfterConnection.setVisibility(View.INVISIBLE);
     }
 
     private void setWallpaper(String originalPath) {

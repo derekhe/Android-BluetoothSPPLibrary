@@ -27,8 +27,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d69e2fd-2be8-4d34-924a-86028f9cf9d0" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/androidTest/java/app/akexorcist/bluetoothspp/ApplicationTest.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/app/akexorcist/bluetoothspp/SimpleActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/akexorcist/bluetoothspp/SimpleActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_simple.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_simple.xml" />
     </list>
     <ignored path="BluetoothSPP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,11 +94,12 @@
       <file leaf-file-name="SimpleActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/app/akexorcist/bluetoothspp/SimpleActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73443985">
-              <caret line="169" column="9" selection-start-line="169" selection-start-column="9" selection-end-line="169" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.6099585">
+              <caret line="134" column="13" selection-start-line="134" selection-start-column="13" selection-end-line="134" selection-end-column="13" />
               <folding>
-                <element signature="e#5080#6635#0" expanded="true" />
-                <element signature="e#6634#6635#0" expanded="true" />
+                <element signature="e#5085#5265#0" expanded="true" />
+                <element signature="e#5425#6980#0" expanded="true" />
+                <element signature="e#6979#6980#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,33 +108,13 @@
       <file leaf-file-name="activity_simple.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_simple.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.0">
-              <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+            <state vertical-scroll-proportion="-2.6981132">
+              <caret line="67" column="39" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="39" />
               <folding />
             </state>
           </provider>
           <provider editor-type-id="android-designer">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.125">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -2596,24 +2579,6 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bluetoothspp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BluetoothSPP" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -3038,7 +3003,13 @@
       <option name="project" value="LOCAL" />
       <updated>1464779254931</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Save settings">
+      <created>1464780008789</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1464780008789</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3095,11 +3066,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add change password dialog." />
     <MESSAGE value="Add background image" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add background image" />
+    <MESSAGE value="Save settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Save settings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="20" />
+      <option name="time" value="25" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -3495,8 +3467,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_simple.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+        <state vertical-scroll-proportion="-2.6981132">
+          <caret line="67" column="39" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -3506,11 +3478,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/akexorcist/bluetoothspp/SimpleActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73443985">
-          <caret line="169" column="9" selection-start-line="169" selection-start-column="9" selection-end-line="169" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.6099585">
+          <caret line="134" column="13" selection-start-line="134" selection-start-column="13" selection-end-line="134" selection-end-column="13" />
           <folding>
-            <element signature="e#5080#6635#0" expanded="true" />
-            <element signature="e#6634#6635#0" expanded="true" />
+            <element signature="e#5085#5265#0" expanded="true" />
+            <element signature="e#5425#6980#0" expanded="true" />
+            <element signature="e#6979#6980#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -24,4 +24,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
+    compile 'com.kbeanie:multipicker:1.1.0@aar'
+    compile 'com.android.support:support-v4:23.4.0'
 }

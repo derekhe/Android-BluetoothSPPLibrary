@@ -18,17 +18,30 @@ package app.akexorcist.bluetoothspp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.kbeanie.multipicker.api.ImagePicker;
+import com.kbeanie.multipicker.api.Picker;
+import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
+import com.kbeanie.multipicker.api.entity.ChosenImage;
+
+import java.io.IOException;
+import java.util.List;
 
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 import app.akexorcist.bluetotohspp.library.BluetoothState;
@@ -41,6 +54,9 @@ public class SimpleActivity extends Activity {
     private Button btnChangeBackground;
     private CheckBox chkCheckConnection;
     private Button btnChangeDefault;
+    private ImagePicker imagePicker;
+    private ImageView background;
+    private DisplayMetrics metrics;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +120,50 @@ public class SimpleActivity extends Activity {
                 showChangeLangDialog();
             }
         });
+
+        metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        btnChangeBackground.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                imagePicker = new ImagePicker(SimpleActivity.this);
+                imagePicker.setImagePickerCallback(new ImagePickerCallback() {
+                                                       @Override
+                                                       public void onImagesChosen(List<ChosenImage> images) {
+                                                           Log.e("HI", "HI");
+                                                           Bitmap myBitmap = BitmapFactory
+                                                                   .decodeFile(images.get(0).getOriginalPath());
+
+                                                           Bitmap resized = Bitmap
+                                                                   .createScaledBitmap(myBitmap,
+                                                                           metrics.heightPixels,
+                                                                           (int) (metrics.heightPixels * myBitmap
+                                                                                   .getHeight()
+                                                                                   / myBitmap
+                                                                                   .getWidth()),
+                                                                           true);
+
+                                                           background.setImageBitmap(resized);
+                                                       }
+
+                                                       @Override
+                                                       public void onError(String message) {
+                                                           // Do error handling
+                                                           Log.e("Error", "Error");
+                                                       }
+                                                   }
+                );
+
+                imagePicker.pickImage();
+            }
+        });
+
+        background = (ImageView) findViewById(R.id.imgBackground);
+        background.getLayoutParams().height = metrics.heightPixels;
+        background.getLayoutParams().width = metrics.widthPixels;
+        background.requestLayout();
     }
 
     public void showChangeLangDialog() {
@@ -173,6 +233,11 @@ public class SimpleActivity extends Activity {
                         , Toast.LENGTH_SHORT).show();
                 finish();
             }
+        } else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+            if (resultCode == Activity.RESULT_OK) {
+                imagePicker.submit(data);
+            }
         }
+
     }
 }
